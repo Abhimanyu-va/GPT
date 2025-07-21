@@ -83,7 +83,6 @@ function App() {
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [speechEnabled, setSpeechEnabled] = useState(true);
   const [apiConnected, setApiConnected] = useState(false);
 
   const recognitionRef = useRef<SpeechRecognition | null>(null);
@@ -143,30 +142,6 @@ function App() {
       console.error('API connection failed:', error);
       setApiConnected(false);
     }
-  };
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const speak = (text: string) => {
-    if (!speechEnabled || !synthRef.current) return;
-
-    // Cancel any ongoing speech
-    synthRef.current.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9;
-    utterance.pitch = 1;
-    utterance.volume = 0.8;
-
-    utterance.onstart = () => setIsSpeaking(true);
-    utterance.onend = () => setIsSpeaking(false);
-    utterance.onerror = () => setIsSpeaking(false);
-
-    synthRef.current.speak(utterance);
-  };
-
   const startListening = () => {
     if (recognitionRef.current && !isListening) {
       try {
