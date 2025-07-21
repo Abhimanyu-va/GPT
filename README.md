@@ -35,23 +35,52 @@ A modern, full-stack voice assistant application that combines a React TypeScrip
 - **Python** (v3.8 or higher)
 - **OpenAI API Key**
 
-## 🚀 Quick Start
+## 🚀 Getting Started
 
-### 1. Install Frontend Dependencies
-```bash
-npm install
-```
+### Quick Start
 
-### 2. Install Python Dependencies
-```bash
-pip install flask flask-cors openai
-```
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-### 3. Set Up OpenAI API Key
-Update the API key in `backend/app.py`:
-```python
-api_data = 'your-openai-api-key-here'
-```
+2. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+3. **Open your browser** and navigate to `http://localhost:5173`
+
+## 🎯 Features
+
+- 🎤 **Voice Recognition** - Click to speak, get instant transcription
+- 🤖 **AI Responses** - Powered by OpenAI's GPT-4 for intelligent conversations
+- 🔊 **Text-to-Speech** - Hear AI responses spoken naturally
+- 🌐 **Browser Commands** - Voice commands to open websites
+- 📱 **Mobile Responsive** - Works perfectly on all devices
+- ✨ **Smooth Animations** - Professional polish with subtle motion effects
+
+## 🔧 API Integration
+
+The application integrates directly with OpenAI's API for AI responses. The API key is configured in the source code, but for production use, you should:
+1. Move the API key to environment variables
+2. Implement proper API key management
+3. Add rate limiting and error handling
+
+## 🎤 Voice Commands
+
+Try these voice commands:
+- **"Open YouTube"** - Opens YouTube in new tab
+- **"Open Google"** - Opens Google search
+- **"Bye"** - End the conversation
+- **Any question** - Get AI-powered responses
+
+## 🛠️ Technology Stack
+
+- **Frontend**: React + TypeScript + Vite
+- **AI Integration**: OpenAI GPT-4 API
+- **Speech**: Web Speech API for recognition and synthesis
+- **Styling**: Modern CSS with animations and micro-interactions
 
 ### 4. Start the Backend Server
 ```bash

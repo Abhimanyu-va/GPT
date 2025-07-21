@@ -37,6 +37,39 @@ declare global {
 
 const API_BASE_URL = 'http://localhost:5000/api';
 
+// OpenAI API integration (client-side)
+const OPENAI_API_KEY = 'sk-proj-0W7UTSnEoJ8UVlJnwO1HT3BlbkFJW3V2wieIvVI7rMZNirBj';
+
+const getAIResponse = async (message: string): Promise<string> => {
+  try {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'gpt-4o',
+        messages: [
+          { role: 'system', content: 'You are a helpful assistant. Keep responses concise and friendly.' },
+          { role: 'user', content: message }
+        ],
+        max_tokens: 200
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`OpenAI API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0].message.content;
+  } catch (error) {
+    console.error('OpenAI API error:', error);
+    return "I'm sorry, I'm having trouble connecting to my AI service right now. Please try again later.";
+  }
+};
+
 function App() {
   const [messages, setMessages] = useState<Message[]>([
     {
