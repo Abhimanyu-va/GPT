@@ -17,6 +17,7 @@ const App: React.FC = () => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [speechEnabled, setSpeechEnabled] = useState(true);
   const [isConnected, setIsConnected] = useState(true);
+  const [messageCounter, setMessageCounter] = useState(0);
   
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
@@ -67,8 +68,9 @@ const App: React.FC = () => {
   };
 
   const addMessage = (text: string, isUser: boolean) => {
+    setMessageCounter(prev => prev + 1);
     const newMessage: Message = {
-      id: Date.now(),
+      id: Date.now() + messageCounter,
       text,
       isUser,
       timestamp: new Date()
