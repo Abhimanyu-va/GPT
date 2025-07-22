@@ -135,36 +135,35 @@ const App: React.FC = () => {
       }
 
       // Call OpenAI API
-      // Direct OpenAI API call (Note: In production, this should be done through a backend for security)
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      // Call backend API
+      const response = await fetch('http://localhost:3001/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer sk-proj-0W7UTSnEoJ8UVlJnwO1HT3BlbkFJW3V2wieIvVI7rMZNirBj`
         },
         body: JSON.stringify({
-          model: 'gpt-4o',
-          messages: [
-            { role: 'system', content: 'You are a helpful assistant. Keep responses concise and friendly.' },
-            { role: 'user', content: textToSend }
-          ],
-          max_tokens: 200
+          message: textToSend
         })
       });
 
       if (!response.ok) {
-        throw new Error(`OpenAI API request failed: ${response.status}`);
+        throw new Error(`Backend API request failed: ${response.status}`);
       }
 
       const data = await response.json();
-      const aiResponse = data.choices[0].message.content;
+      const aiResponse = data.response;
+      
+      // Handle special actions
+      if (data.action === 'open_site' && data.url) {
+        window.open(data.url, '_blank');
+      }
       
       addMessage(aiResponse, false);
       speak(aiResponse);
       setIsConnected(true);
     } catch (error) {
       console.error('Error processing request:', error);
-      const errorMessage = "Sorry, I encountered an error processing your request. This might be due to CORS restrictions or API key issues.";
+      const errorMessage = "Sorry, I encountered an error processing your request. Please make sure the backend server is running.";
       addMessage(errorMessage, false);
       speak(errorMessage);
       setIsConnected(false);
