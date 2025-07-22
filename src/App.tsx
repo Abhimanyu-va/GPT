@@ -17,7 +17,6 @@ const App: React.FC = () => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [speechEnabled, setSpeechEnabled] = useState(true);
   const [isConnected, setIsConnected] = useState(true);
-  const [apiKey, setApiKey] = useState('sk-proj-0W7UTSnEoJ8UVlJnwO1HT3BlbkFJW3V2wieIvVI7rMZNirBj');
   
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
@@ -134,25 +133,13 @@ const App: React.FC = () => {
       }
 
       // Call OpenAI API
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const response = await fetch('http://localhost:5000/api/chat', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'gpt-4',
-          messages: [
-            {
-              role: 'system',
-              content: 'You are a helpful voice assistant. Keep responses concise and conversational, under 100 words.'
-            },
-            {
-              role: 'user',
-              content: textToSend
-            }
-          ],
-          max_tokens: 150
+          message: textToSend
         })
       });
 
@@ -161,7 +148,7 @@ const App: React.FC = () => {
       }
 
       const data = await response.json();
-      const aiResponse = data.choices[0].message.content;
+      const aiResponse = data.response;
       
       addMessage(aiResponse, false);
       speak(aiResponse);
