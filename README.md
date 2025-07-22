@@ -1,17 +1,15 @@
 # AI Voice Assistant Web Application
 
-A modern, full-stack voice assistant application that combines a React TypeScript frontend with a Python Flask backend, powered by OpenAI's GPT-4.
+A modern voice assistant web application built with React TypeScript, featuring direct OpenAI API integration for intelligent conversations.
 
 ## 🚀 Features
 
 - **🎤 Voice Recognition**: Click to speak and get instant voice-to-text conversion
 - **🔊 Text-to-Speech**: AI responses are automatically spoken aloud
 - **💬 Modern Chat Interface**: Clean, WhatsApp-style messaging UI
-- **🌐 Browser Commands**: Voice commands to open websites (YouTube, Google, etc.)
 - **📱 Fully Responsive**: Works perfectly on desktop, tablet, and mobile
-- **⚡ Real-time Communication**: Instant responses via REST API
+- **⚡ Real-time Communication**: Direct API integration with OpenAI
 - **🎨 Beautiful Design**: Modern gradient design with smooth animations
-- **🔄 Offline Mode**: Fallback functionality when backend is unavailable
 
 ## 🛠️ Technology Stack
 
@@ -19,20 +17,13 @@ A modern, full-stack voice assistant application that combines a React TypeScrip
 - **React 18** with TypeScript
 - **Vite** for fast development and building
 - **Web Speech API** for voice recognition and synthesis
-- **Axios** for HTTP requests
+- **OpenAI API** for intelligent responses
 - **Lucide React** for beautiful icons
 - **CSS3** with modern features (Grid, Flexbox, Animations)
-
-### Backend
-- **Python Flask** web framework
-- **OpenAI GPT-4** for intelligent responses
-- **Flask-CORS** for cross-origin requests
-- **Threading** for non-blocking browser operations
 
 ## 📋 Prerequisites
 
 - **Node.js** (v16 or higher)
-- **Python** (v3.8 or higher)
 - **OpenAI API Key**
 
 ## 🚀 Getting Started
@@ -49,14 +40,13 @@ A modern, full-stack voice assistant application that combines a React TypeScrip
    npm run dev
    ```
 
-3. **Open your browser** and navigate to `http://localhost:5173`
+3. **Configure your OpenAI API key** in the application settings
 
 ## 🎯 Features
 
 - 🎤 **Voice Recognition** - Click to speak, get instant transcription
 - 🤖 **AI Responses** - Powered by OpenAI's GPT-4 for intelligent conversations
 - 🔊 **Text-to-Speech** - Hear AI responses spoken naturally
-- 🌐 **Browser Commands** - Voice commands to open websites
 - 📱 **Mobile Responsive** - Works perfectly on all devices
 - ✨ **Smooth Animations** - Professional polish with subtle motion effects
 
@@ -70,9 +60,6 @@ The application integrates directly with OpenAI's API for AI responses. The API 
 ## 🎤 Voice Commands
 
 Try these voice commands:
-- **"Open YouTube"** - Opens YouTube in new tab
-- **"Open Google"** - Opens Google search
-- **"Bye"** - End the conversation
 - **Any question** - Get AI-powered responses
 
 ## 🛠️ Technology Stack
@@ -82,38 +69,9 @@ Try these voice commands:
 - **Speech**: Web Speech API for recognition and synthesis
 - **Styling**: Modern CSS with animations and micro-interactions
 
-### 4. Start the Backend Server
-```bash
-cd backend
-python app.py
-```
-The Flask server will start on `http://localhost:5000`
-
-### 5. Start the Frontend Development Server
-```bash
-npm run dev
-```
-The React app will start on `http://localhost:5173`
-
-## 🎯 Usage
-
-### Voice Commands
-- **"Open YouTube"** - Opens YouTube in a new tab
-- **"Open Google"** - Opens Google in a new tab
-- **"Bye" or "Goodbye"** - Ends the conversation
-- **Any other question** - Gets an AI response from GPT-4
-
-### Interface Controls
-- **🎤 Microphone Button**: Click to start/stop voice input
-- **📤 Send Button**: Send typed messages
-- **🔊 Speaker Toggle**: Enable/disable text-to-speech
-- **Connection Status**: Shows API connection status
-
 ## 🏗️ Project Structure
 
 ```
-├── backend/
-│   └── app.py              # Flask API server
 ├── src/
 │   ├── App.tsx             # Main React component
 │   ├── App.css             # Styles and animations
@@ -125,34 +83,6 @@ The React app will start on `http://localhost:5173`
 └── README.md              # This file
 ```
 
-## 🔧 API Endpoints
-
-### `POST /api/chat`
-Send a message to the AI assistant
-```json
-{
-  "message": "Hello, how are you?"
-}
-```
-
-**Response:**
-```json
-{
-  "response": "I'm doing great! How can I help you today?",
-  "action": null,
-  "url": null
-}
-```
-
-### `GET /api/health`
-Check API server status
-```json
-{
-  "status": "healthy",
-  "message": "Voice Assistant API is running"
-}
-```
-
 ## 🎨 Customization
 
 ### Styling
@@ -161,9 +91,9 @@ Check API server status
 - Adjust responsive breakpoints for different screen sizes
 
 ### AI Behavior
-- Update the system prompt in `backend/app.py`
+- Update the system prompt in the OpenAI API call
 - Modify `max_tokens` for longer/shorter responses
-- Add custom command handlers in the Flask route
+- Customize the AI model and parameters
 
 ### Voice Settings
 - Adjust speech synthesis rate, pitch, and volume in `App.tsx`
@@ -178,20 +108,8 @@ npm run build
 # Deploy the 'dist' folder
 ```
 
-### Backend (Heroku/Railway)
-1. Add `requirements.txt`:
-```
-flask
-flask-cors
-openai
-```
-
-2. Add `Procfile`:
-```
-web: python backend/app.py
-```
-
-3. Set environment variables for the OpenAI API key
+### Environment Variables
+Set your OpenAI API key as an environment variable for production deployments.
 
 ## 🔒 Security Notes
 
@@ -208,10 +126,9 @@ web: python backend/app.py
    - Ensure HTTPS or localhost for Web Speech API
    - Check browser permissions for microphone access
 
-2. **API connection failed**
-   - Verify Flask server is running on port 5000
-   - Check CORS configuration
+2. **OpenAI API errors**
    - Ensure OpenAI API key is valid
+   - Check API rate limits and usage
 
 3. **Speech synthesis not working**
    - Check browser compatibility
@@ -241,9 +158,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - OpenAI for the GPT-4 API
 - Web Speech API for voice capabilities
-- React and Flask communities
+- React community
 - Lucide for beautiful icons
 
 ---
-
-**Built with ❤️ using React, TypeScript, Python, and OpenAI GPT-4**
