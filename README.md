@@ -39,6 +39,8 @@ A modern voice assistant web application built with React TypeScript, featuring 
    ```bash
    npm run dev
    ```
+   
+   **Note:** Make sure to run this command from the project's root directory (not from the `backend/` subdirectory).
 
 3. **Configure your OpenAI API key** in the application settings
 
